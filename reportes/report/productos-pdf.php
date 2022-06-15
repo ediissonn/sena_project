@@ -1,0 +1,63 @@
+<?php
+    require('fpdf/fpdf.php');
+
+    class PDF extends FPDF
+{
+// CABECERA DE PÁGINA
+function Header()
+{
+    // Arial bold 15
+    $this->SetFont('Arial','B',22);
+    // Movernos A La Derecha
+    $this->Cell(110);
+    // Titulo
+    $this->Cell(70,10,'Reporte De Productos',0,0,'C');
+    // Fecha
+    $this->SetFont('Arial','B',13);
+    $this->Cell(85,10,"Fecha: ". date("d/m/Y"), 0, 1, "C");
+    // Salto De Linea
+    $this->Ln(15);
+
+    $this->Cell(40, 10, 'Id', 1, 0, 'C', 0);
+    $this->Cell(40, 10, 'Nombre', 1, 0, 'C', 0);
+    $this->Cell(40, 10, 'Codigo', 1, 0, 'C', 0);
+    $this->Cell(50, 10, 'Precio Unitario', 1, 0, 'C', 0);
+    $this->Cell(40, 10, 'Descripcion', 1, 0, 'C', 0);
+    $this->Cell(35, 10, 'ID_Categoria', 1, 0, 'C', 0);
+    $this->Cell(35, 10, 'ID_Proveedor', 1, 1, 'C', 0);
+}
+
+// PIE DE PÁGINA
+function Footer()
+{
+    // Posición: a 1,5 cm del final
+    $this->SetY(-15);
+    // Arial italic 8
+    $this->SetFont('Arial','I',8);
+    // Page number
+    $this->Cell(0,10,utf8_decode('Pagina ').$this->PageNo().'/{nb}',0,0,'C');
+}
+}
+
+require '../../conexion/conectar.php';
+$consulta = "SELECT * FROM producto";
+$resultado = $con->query($consulta);
+
+$pdf = new PDF("p", "mm", array(300, 300));
+$pdf->AliasNbPages();
+$pdf->AddPage();
+$pdf->SetFont("Arial","",12);
+
+while($producto = $resultado->fetch_assoc()){
+    $pdf->Cell(40, 13, $producto['idproducto_producto'], 1, 0, 'C', 0);
+    $pdf->Cell(40, 13, $producto['nombre_producto'], 1, 0, 'C', 0);
+    $pdf->Cell(40, 13, $producto['codigo_producto'], 1, 0, 'C', 0);
+    $pdf->Cell(50, 13, $producto['precio_unitario_producto'], 1, 0, 'C', 0);
+    $pdf->Cell(40, 13, $producto['descripcion_producto'], 1, 0, 'C', 0);
+    $pdf->Cell(35, 13, $producto['idcategoria_categoria'], 1, 0, 'C', 0);
+    $pdf->Cell(35, 13, $producto['idproveedor_proveedor'], 1, 1, 'C', 0);
+}
+$pdf->Output();
+
+
+?>

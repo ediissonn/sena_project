@@ -1,0 +1,75 @@
+/*** Customers List ***/
+
+body {
+  font-family: Arial;
+  background-image: url(https://www.wallpapertip.com/wmimgs/4-41454_free-download-wallpapers-hd-space-wallpaper-hd-pc.jpg);
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: "Times New Roman", Times, serif;
+  padding-left: 65px;
+  text-align: left;
+  display: inline-flex;
+  color: white;
+  text-decoration: none;
+}
+
+h1:hover {
+  text-decoration-line: underline;
+}
+
+/*** Customers Create ***/
+
+.btn-new {
+  background: #ff0000;
+  color: white;
+  border-radius: 4px;
+  padding: 15px 25px;
+  margin: 20px;
+  align-items: center;
+  font-size: 15px;
+}
+
+/*** Customers Table ***/
+
+table {
+  font-style: italic;
+}
+
+table th {
+  color: white;
+}
+
+table tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+table tr:nth-child(even) {
+  background: #000000;
+  color: white;
+}
+
+table tr:hover {
+  background-color: #ff0000;
+  color: #000000;
+}
+
+/*** Customers Search ***/
+
+.form-search {
+  display: inline-block;
+  float: right;
+  margin: 20px 15px;
+  padding: 10px;
+  border: 1px solid #ff0000;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}
+
+.form-control {
+  padding: 10px;
+}
